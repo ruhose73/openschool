@@ -14,7 +14,7 @@ services:
     frontend:
         build: ./apps/frontend
         ports:
-            - 90:5000
+            - 3000:3000
         networks:
             - network
 
