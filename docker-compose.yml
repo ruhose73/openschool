@@ -1,1 +1,35 @@
-# Файл и правда пустой
+version: "3.7" 
+
+services: 
+    default:
+        build: .default
+        container_name: default
+        ports: 
+            - 3000:3000
+        volumes: 
+            - '.default:/etc/nginx/'
+
+    admin: 
+        build: ./admin
+        container_name: admin 
+    
+#    articles: 
+ #       build ./articles
+ #       container_name: articles
+    
+   # auth:
+
+   # study:
+
+   # users: 
+    
+    frontend:
+        build: ./frontend
+
+    # without processes and extradata in MVP
+
+networks: 
+    network:
+        driver: bridge
+    
+
