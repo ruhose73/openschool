@@ -1,6 +1,6 @@
 FROM nginx:1.21-alpine
 ENV WORKDIR /etc/nginx
-WORKDIR ${WORKDIR} 
+WORKDIR $WORKDIR 
 VOLUME $WORKDIR 
 
 

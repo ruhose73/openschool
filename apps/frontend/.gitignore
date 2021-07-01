@@ -1,1 +1,3 @@
-# Файл и правда пустой
+node_modules
+npm-debug*
+.nuxt
