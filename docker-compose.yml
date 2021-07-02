@@ -13,6 +13,8 @@ services:
     frontend:
         build: ./apps/frontend
         container_name: frontend
+        env_file: 
+            - frontend-variables.env
         ports:
             - 3001:3000
         networks:
