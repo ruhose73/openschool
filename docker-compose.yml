@@ -6,33 +6,50 @@ services:
         container_name: default
         ports: 
             - 3000:80
-        #volumes: 
-        #    - '/apps/default:/etc/nginx/conf.d'
         networks: 
             - network
+
     frontend:
         build: ./apps/frontend
         container_name: frontend
+        env_file: 
+            - ./env_variables/frontend-variables.env
         ports:
             - 3001:3000
         networks:
             - network
 
-#    admin: 
-#        build: ./admin
-#        container_name: admin 
-    
-#    articles: 
- #       build ./articles
- #       container_name: articles
-    
-   # auth:
+    admin: 
+        build: ./apps/admin
+        container_name: admin 
+        networks:
+            - network
 
-   # study:
+    articles: 
+        build: ./apps/articles
+        container_name: articles
+        networks:
+            - network
 
-   # users: 
-    
-    
+    auth:
+        build: ./apps/auth
+        container_name: auth
+        networks:
+            - network
+
+    study:
+        build: ./apps/study
+        container_name: study
+        networks:
+            - network
+
+    users: 
+        build: ./apps/users
+        container_name: users
+        networks:
+            - network
+
+
 
     # without processes and extradata in MVP
 

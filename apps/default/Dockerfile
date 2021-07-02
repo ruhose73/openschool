@@ -1,6 +1,7 @@
 FROM nginx:1.21-alpine
-ENV WORKDIR /etc/nginx
-WORKDIR $WORKDIR 
+# WORKDIR /etc/nginx
+ADD ./src/index.html /usr/share/nginx/html
+
 
 
 
