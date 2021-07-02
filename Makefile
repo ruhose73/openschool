@@ -19,13 +19,15 @@ restart:
 	docker-compose -f docker-compose.yml up -d $(c)
 logs:
 	docker-compose -f docker-compose.yml logs --tail=100 -f $(c)
-logs-api:
-	docker-compose -f docker-compose.yml logs --tail=100 -f api
+logs-default:
+	docker-compose -f docker-compose.yml logs --tail=100 -f default
+logs-frontend:
+	docker-compose -f docker-compose.yml logs --tail=100 -f frontend
 ps:
 	docker-compose -f docker-compose.yml ps
-login-timescale:
-	docker-compose -f docker-compose.yml exec timescale /bin/bash
-login-api:
-	docker-compose -f docker-compose.yml exec api /bin/bash
-db-shell:
-	docker-compose -f docker-compose.yml exec timescale psql -Upostgres
+login-default:
+	docker-compose -f docker-compose.yml exec default sh
+login-frontend:
+	docker-compose -f docker-compose.yml exec api sh
+#db-shell:
+#	docker-compose -f docker-compose.yml exec timescale psql #-Upostgres
