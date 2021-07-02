@@ -11,9 +11,9 @@
 
 Для сборки и запуска проекта необходимо установить [docker](https://www.docker.com/https://www.docker.com/get-started) и [docker-compose](https://docs.docker.com/compose/install/). Также необходимо запустить [docker daemon](https://docs.docker.com/config/daemon/), если он не запущен.
 
-### Команды для запуска
+Для построения и запуска проекта создан *Makefile*. Для пользователей Windows необходимо произвести [дополнительную настройку](https://stackoverflow.com/questions/2532234/how-to-run-a-makefile-in-windows)
 
-Для построения и запуска проекта создан *Makefile*. В корне проекта необходимо ввести следующую последовательность команд:
+### Команды для запуска
 
 - `make build` - сборка всей сети контейнеров без последующего поднятия.
 - `make up` - поднять сеть и все контейнеры.
