@@ -17,6 +17,8 @@ services:
             - frontend-variables.env
         ports:
             - 3001:3000
+        volumes: 
+            - './apps/frontend/src:/usr/src/nuxt-app'
         networks:
             - network
 
