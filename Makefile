@@ -8,6 +8,10 @@ up:
 	docker-compose -f docker-compose.yml up -d $(c)
 start:
 	docker-compose -f docker-compose.yml start $(c)
+pause:
+	docker-compose -f docker-compose.yml pause $(c)
+unpause:
+	docker-compose -f docker-compose.yml unpause $(c)
 down:
 	docker-compose -f docker-compose.yml down $(c)
 destroy:
