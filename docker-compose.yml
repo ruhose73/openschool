@@ -5,16 +5,16 @@ services:
         build: ./apps/default
         container_name: default
         ports: 
-            - 80:3000
-        volumes: 
-            - './apps/default:/etc/nginx/conf.d'
+            - 3000:80
+        #volumes: 
+        #    - '/apps/default:/etc/nginx/conf.d'
         networks: 
             - network
-
     frontend:
         build: ./apps/frontend
+        container_name: frontend
         ports:
-            - 3000:3000
+            - 3001:3000
         networks:
             - network
 
