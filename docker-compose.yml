@@ -7,7 +7,7 @@ services:
         ports: 
             - 3000:80
         networks: 
-            - network
+            - network 
 
     frontend:
         build: ./apps/frontend
@@ -15,37 +15,57 @@ services:
         env_file: 
             - ./envs/frontend-variables.env
         ports:
-            - 3001:3000
+            - 5000:5000
         networks:
             - network
 
     admin: 
         build: ./apps/admin
         container_name: admin 
+        env_file: 
+            - ./envs/admin-variables.env
+        ports: 
+            - 7000:7000
         networks:
             - network
 
     articles: 
         build: ./apps/articles
         container_name: articles
+        env_file: 
+            - ./envs/articles-variables.env
+        ports: 
+            - 3200:3200
         networks:
             - network
 
     auth:
         build: ./apps/auth
         container_name: auth
+        env_file: 
+            - ./envs/auth-variables.env
+        ports: 
+            - 4200:4200
         networks:
             - network
 
     study:
         build: ./apps/study
         container_name: study
+        env_file: 
+            - ./envs/study-variables.env
+        ports: 
+            - 3100:3100
         networks:
             - network
 
     users: 
         build: ./apps/users
         container_name: users
+        env_file: 
+            - ./envs/users-variables.env
+        ports: 
+            - 4100:4100
         networks:
             - network
 
@@ -56,5 +76,6 @@ services:
 networks: 
     network:
         driver: bridge
-    
+        
+
 
