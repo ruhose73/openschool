@@ -3,13 +3,13 @@
 const express = require('express');
 
 // константы
-const port = 3004;
+const port = 4200;
 const host = '0.0.0.0';
 
 // приложение
 const app = express();
 app.get('/', (req, res) => {
-  res.send('I\'m admin');
+  res.send('I\'m auth');
 });
 
 app.listen(port, host);

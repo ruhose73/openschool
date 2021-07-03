@@ -15,7 +15,7 @@ services:
         env_file: 
             - ./envs/frontend-variables.env
         ports:
-            - 3001:3000
+            - 5000:5000
         networks:
             - network
 
@@ -25,7 +25,7 @@ services:
         env_file: 
             - ./envs/admin-variables.env
         ports: 
-            - 3002:3002
+            - 7000:7000
         networks:
             - network
 
@@ -35,7 +35,7 @@ services:
         env_file: 
             - ./envs/articles-variables.env
         ports: 
-            - 3003:3003
+            - 3200:3200
         networks:
             - network
 
@@ -45,7 +45,7 @@ services:
         env_file: 
             - ./envs/auth-variables.env
         ports: 
-            - 3004:3004
+            - 4200:4200
         networks:
             - network
 
@@ -55,7 +55,7 @@ services:
         env_file: 
             - ./envs/study-variables.env
         ports: 
-            - 3005:3005
+            - 3100:3100
         networks:
             - network
 
@@ -65,7 +65,7 @@ services:
         env_file: 
             - ./envs/users-variables.env
         ports: 
-            - 3006:3006
+            - 4100:4100
         networks:
             - network
 

@@ -3,7 +3,7 @@
 const express = require('express');
 
 // константы
-const port = 3002;
+const port = 7000;
 const host = '0.0.0.0';
 
 // приложение
