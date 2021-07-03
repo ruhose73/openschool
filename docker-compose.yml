@@ -7,7 +7,7 @@ services:
         ports: 
             - 3000:80
         networks: 
-            - network
+            - network 
 
     frontend:
         build: ./apps/frontend
@@ -76,5 +76,6 @@ services:
 networks: 
     network:
         driver: bridge
-    
+        
+
 
