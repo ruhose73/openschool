@@ -27,11 +27,15 @@ logs-default:
 	docker-compose -f docker-compose.yml logs --tail=100 -f default
 logs-frontend:
 	docker-compose -f docker-compose.yml logs --tail=100 -f frontend
+logs-admin:
+	docker-compose -f docker-compose.yml logs --tail=100 -f admin
 ps:
 	docker-compose -f docker-compose.yml ps
 login-default:
 	docker-compose -f docker-compose.yml exec default sh
 login-frontend:
-	docker-compose -f docker-compose.yml exec api sh
+	docker-compose -f docker-compose.yml exec frontend sh
+login-admin:
+	docker-compose -f docker-compose.yml exec admin sh
 #db-shell:
 #	docker-compose -f docker-compose.yml exec timescale psql #-Upostgres

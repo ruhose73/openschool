@@ -22,30 +22,50 @@ services:
     admin: 
         build: ./apps/admin
         container_name: admin 
+        env_file: 
+            - ./envs/admin-variables.env
+        ports: 
+            - 3002:3002
         networks:
             - network
 
     articles: 
         build: ./apps/articles
         container_name: articles
+        env_file: 
+            - ./envs/articles-variables.env
+        ports: 
+            - 3003:3003
         networks:
             - network
 
     auth:
         build: ./apps/auth
         container_name: auth
+        env_file: 
+            - ./envs/auth-variables.env
+        ports: 
+            - 3004:3004
         networks:
             - network
 
     study:
         build: ./apps/study
         container_name: study
+        env_file: 
+            - ./envs/study-variables.env
+        ports: 
+            - 3005:3005
         networks:
             - network
 
     users: 
         build: ./apps/users
         container_name: users
+        env_file: 
+            - ./envs/users-variables.env
+        ports: 
+            - 3006:3006
         networks:
             - network
 

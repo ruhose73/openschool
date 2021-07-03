@@ -1,1 +1,13 @@
-# Файл и правда пустой
+{
+    "name": "study_app",
+    "version": "1.0.0",
+    "description": "smth",
+    "author": "first last <first.last@example.com>",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+  }
