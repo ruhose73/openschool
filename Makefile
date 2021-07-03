@@ -29,6 +29,14 @@ logs-frontend:
 	docker-compose -f docker-compose.yml logs --tail=100 -f frontend
 logs-admin:
 	docker-compose -f docker-compose.yml logs --tail=100 -f admin
+logs-articles:
+	docker-compose -f docker-compose.yml logs --tail=100 -f articles
+logs-auth:
+	docker-compose -f docker-compose.yml logs --tail=100 -f auth
+logs-study:
+	docker-compose -f docker-compose.yml logs --tail=100 -f study
+logs-users:
+	docker-compose -f docker-compose.yml logs --tail=100 -f users
 ps:
 	docker-compose -f docker-compose.yml ps
 login-default:
@@ -37,5 +45,13 @@ login-frontend:
 	docker-compose -f docker-compose.yml exec frontend sh
 login-admin:
 	docker-compose -f docker-compose.yml exec admin sh
+login-articles:
+	docker-compose -f docker-compose.yml exec articles sh
+login-auth:
+	docker-compose -f docker-compose.yml exec auth sh
+login-study:
+	docker-compose -f docker-compose.yml exec study sh
+login-users:
+	docker-compose -f docker-compose.yml exec users sh
 #db-shell:
 #	docker-compose -f docker-compose.yml exec timescale psql #-Upostgres

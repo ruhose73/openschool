@@ -37,9 +37,19 @@
 
 - `make logs-default` - подключиться к выводу логов с контейнера default
 - `make logs-frontend` - подключиться к выводу логов с контейнера frontend
+- `make logs-admin` - подключиться к выводу логов с контейнера admin
+- `make logs-articles` - подключиться к выводу логов с контейнера articles
+- `make logs-auth` - подключиться к выводу логов с контейнера auth
+- `make logs-study` - подключиться к выводу логов с контейнера study
+- `make logs-users` - подключиться к выводу логов с контейнера users
 - `make ps` - вывести список и статус работающих контейнеров только из тех, которые определены в *docker-compose.yml*
 - `make login-default` - подключиться к терминалу контейнера default
 - `make login-frontend` - подключиться к терминалу контейнера frontend
+- `make login-admin` - подключиться к терминалу контейнера admin
+- `make login-articles` - подключиться к терминалу контейнера articles
+- `make login-auth` - подключиться к терминалу контейнера auth
+- `make login-study` - подключиться к терминалу контейнера study
+- `make login-users` - подключиться к терминалу контейнера users
 
 ### Запуск без Makefile
 
