@@ -59,13 +59,13 @@
 
 Если сборка прошла успешно и все контейнеры запущены, то по следующим адресам доступны страницы:
 
-- [localhost:3000](localhost:3000) - default
-- [localhost:5000](localhost:5000) - frontend
-- [localhost:7000](localhost:7000) - admin
-- [localhost:3100](localhost:3100) - study
-- [localhost:3200](localhost:3200) - articles
-- [localhost:4100](localhost:4100) - users
-- [localhost:4200](localhost:4200) - auth
+- [localhost:3000](http://localhost:3000) - default
+- [localhost:5000](http://localhost:5000) - frontend
+- [localhost:7000](http://localhost:7000) - admin
+- [localhost:3100](http://localhost:3100) - study
+- [localhost:3200](http://localhost:3200) - articles
+- [localhost:4100](http://localhost:4100) - users
+- [localhost:4200](http://localhost:4200) - auth
 
 
 ### Переменные среды
