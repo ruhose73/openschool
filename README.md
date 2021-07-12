@@ -7,6 +7,7 @@
 - [Чат программистов](https://t.me/joinchat/CdXoy9PeAjI2NTJh)
 - [Чат дизайнеров](https://t.me/joinchat/2JC3zklOvggxN2Jh)
 
+
 ## Запуск на локальной машине
 
 Для сборки и запуска проекта необходимо установить [docker](https://www.docker.com/https://www.docker.com/get-started) и [docker-compose](https://docs.docker.com/compose/install/). Также необходимо запустить [docker daemon](https://docs.docker.com/config/daemon/), если он не запущен.
