@@ -1,9 +1,8 @@
 version: "3.7" 
 
 services: 
-    nginx: 
+    default:
         depends_on: 
-            - default
             - frontend
             - admin
             - articles
@@ -11,17 +10,17 @@ services:
             - study
             - users
         restart: always
-        build:
-            dockerfile: Dockerfile
-            context: ./nginx
-        ports:
-            - 80:80
-
-    default:
         build: ./apps/default
-        container_name: default
+        container_name: nginx
         ports: 
-            - 3000:3000
+            - 3000:80
+        links:
+            - frontend
+            - admin
+            - articles 
+            - auth
+            - study
+            - users
         networks: 
             - network 
 

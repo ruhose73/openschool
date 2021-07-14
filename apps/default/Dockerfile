@@ -1,10 +1,4 @@
-FROM nginx:1.21-alpine
-# WORKDIR /etc/nginx
-ADD ./src/index.html /usr/share/nginx/html
+FROM nginx
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
-
-
-
-
-
-
+ADD ./src/index.html /etc/nginx/html
