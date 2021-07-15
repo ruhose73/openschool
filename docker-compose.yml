@@ -77,8 +77,6 @@ services:
     users: 
         build: ./apps/users
         container_name: users
-        volumes:
-           - ./apps/users/src:/usr/src/app
         env_file: 
             - ./envs/users-variables.env
         ports: 
