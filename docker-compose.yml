@@ -2,10 +2,25 @@ version: "3.7"
 
 services: 
     default:
+        depends_on: 
+            - frontend
+            - admin
+            - articles
+            - auth
+            - study
+            - users
+        restart: always
         build: ./apps/default
-        container_name: default
+        container_name: nginx
         ports: 
             - 3000:80
+        links:
+            - frontend
+            - admin
+            - articles 
+            - auth
+            - study
+            - users
         networks: 
             - network 
 
