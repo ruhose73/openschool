@@ -5,22 +5,26 @@ services:
         depends_on: 
             - frontend
             - admin
-            - articles
+            - other
             - auth
             - study
             - users
+            - extra
+            - processes
         restart: always
         build: ./apps/default
-        container_name: nginx
+        container_name: default
         ports: 
             - 3000:80
         links:
             - frontend
             - admin
-            - articles 
+            - other 
             - auth
             - study
             - users
+            - extra
+            - processes
         networks: 
             - network 
 
@@ -39,18 +43,22 @@ services:
         container_name: admin 
         env_file: 
             - ./envs/admin-variables.env
+        volumes:
+            - ./apps/admin/src:/usr/src:rw
         ports: 
             - 7000:7000
         networks:
             - network
 
-    articles: 
-        build: ./apps/articles
-        container_name: articles
+    other: 
+        build: ./apps/other
+        container_name: other
         env_file: 
-            - ./envs/articles-variables.env
+            - ./envs/other-variables.env
+        volumes:
+            - ./apps/other/src:/usr/src:rw
         ports: 
-            - 3200:3200
+            - 3100:3100
         networks:
             - network
 
@@ -59,8 +67,10 @@ services:
         container_name: auth
         env_file: 
             - ./envs/auth-variables.env
+        volumes:
+            - ./apps/auth/src:/usr/src:rw
         ports: 
-            - 4200:4200
+            - 4000:4000
         networks:
             - network
 
@@ -69,8 +79,10 @@ services:
         container_name: study
         env_file: 
             - ./envs/study-variables.env
+        volumes:
+            - ./apps/study/src:/usr/src:rw
         ports: 
-            - 3100:3100
+            - 3200:3200
         networks:
             - network
 
@@ -79,10 +91,37 @@ services:
         container_name: users
         env_file: 
             - ./envs/users-variables.env
+        volumes:
+            - ./apps/users/src:/usr/src:rw
         ports: 
             - 4100:4100
         networks:
             - network
+
+    extra:
+        build: ./apps/extra
+        container_name: extra
+        env_file: 
+            - ./envs/extra-variables.env
+        volumes:
+            - ./apps/extra/src:/usr/src:rw
+        ports: 
+            - 3300:3300
+        networks: 
+            - network
+        
+    processes:
+        build: ./apps/processes
+        container_name: processes
+        env_file: 
+            - ./envs/processes-variables.env
+        volumes:
+            - ./apps/processes/src:/usr/src:rw
+        ports: 
+            - 9000:9000
+        networks: 
+            - network
+            
 
 
 
