@@ -8,7 +8,7 @@ RUN apk update && apk upgrade
 RUN apk add git
 
 # copy the app, note .dockerignore
-ADD /src $WORKDIR
+ADD /src .
 RUN npm install
 
 # build necessary, even if no static files are needed,
