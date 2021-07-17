@@ -2,6 +2,14 @@ version: "3.7"
 
 services: 
     default:
+        
+        restart: always
+        build: ./apps/default
+        container_name: default
+        env_file: 
+            - ./envs/default-variables.env
+        ports: 
+            - ${EXTERNAL_DEFAULT_PORT}:3000
         depends_on: 
             - frontend
             - admin
@@ -11,11 +19,6 @@ services:
             - users
             - extra
             - processes
-        restart: always
-        build: ./apps/default
-        container_name: default
-        ports: 
-            - 3000:80
         links:
             - frontend
             - admin
@@ -28,28 +31,6 @@ services:
         networks: 
             - network 
 
-    frontend:
-        build: ./apps/frontend
-        container_name: frontend
-        env_file: 
-            - ./envs/frontend-variables.env
-        ports:
-            - 5000:5000
-        networks:
-            - network
-
-    admin: 
-        build: ./apps/admin
-        container_name: admin 
-        env_file: 
-            - ./envs/admin-variables.env
-        volumes:
-            - ./apps/admin/src:/usr/src:rw
-        ports: 
-            - 7000:7000
-        networks:
-            - network
-
     other: 
         build: ./apps/other
         container_name: other
@@ -58,22 +39,10 @@ services:
         volumes:
             - ./apps/other/src:/usr/src:rw
         ports: 
-            - 3100:3100
+            - ${EXTERNAL_OTHER_PORT}:3100
         networks:
             - network
-
-    auth:
-        build: ./apps/auth
-        container_name: auth
-        env_file: 
-            - ./envs/auth-variables.env
-        volumes:
-            - ./apps/auth/src:/usr/src:rw
-        ports: 
-            - 4000:4000
-        networks:
-            - network
-
+        
     study:
         build: ./apps/study
         container_name: study
@@ -82,19 +51,7 @@ services:
         volumes:
             - ./apps/study/src:/usr/src:rw
         ports: 
-            - 3200:3200
-        networks:
-            - network
-
-    users: 
-        build: ./apps/users
-        container_name: users
-        env_file: 
-            - ./envs/users-variables.env
-        volumes:
-            - ./apps/users/src:/usr/src:rw
-        ports: 
-            - 4100:4100
+            - ${EXTERNAL_STUDY_PORT}:3200
         networks:
             - network
 
@@ -106,10 +63,44 @@ services:
         volumes:
             - ./apps/extra/src:/usr/src:rw
         ports: 
-            - 3300:3300
+            - ${EXTERNAL_EXTRA_PORT}:3300
         networks: 
             - network
-        
+
+    auth:
+        build: ./apps/auth
+        container_name: auth
+        env_file: 
+            - ./envs/auth-variables.env
+        volumes:
+            - ./apps/auth/src:/usr/src:rw
+        ports: 
+            - ${EXTERNAL_AUTH_PORT}:4000
+        networks:
+            - network
+
+    users: 
+        build: ./apps/users
+        container_name: users
+        env_file: 
+            - ./envs/users-variables.env
+        volumes:
+            - ./apps/users/src:/usr/src:rw
+        ports: 
+            - ${EXTERNAL_USERS_PORT}:4100
+        networks:
+            - network
+
+    frontend:
+        build: ./apps/frontend
+        container_name: frontend
+        env_file: 
+            - ./envs/frontend-variables.env
+        ports:
+            - ${EXTERNAL_FRONTEND_PORT}:5000
+        networks:
+            - network
+
     processes:
         build: ./apps/processes
         container_name: processes
@@ -118,14 +109,21 @@ services:
         volumes:
             - ./apps/processes/src:/usr/src:rw
         ports: 
-            - 9000:9000
+            - ${EXTERNAL_PROCESSES_PORT}:6000
         networks: 
             - network
-            
 
-
-
-    # without processes and extradata in MVP
+    admin: 
+        build: ./apps/admin
+        container_name: admin 
+        env_file: 
+            - ./envs/admin-variables.env
+        volumes:
+            - ./apps/admin/src:/usr/src:rw
+        ports: 
+            - ${EXTERNAL_ADMIN_PORT}:7000
+        networks:
+            - network
 
 networks: 
     network:
