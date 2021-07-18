@@ -2,11 +2,11 @@
 
 const express = require('express');
 
-// константы
-const port = 3200;
-const host = '0.0.0.0';
+// constants
+const port = process.env.PORT;
+const host = process.env.HOST;
 
-// приложение
+// the application
 const app = express();
 app.get('/', (req, res) => {
   res.send('I\'m study');
