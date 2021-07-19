@@ -5,6 +5,9 @@ services:
     restart: always
     build: ./apps/default
     container_name: default
+    environment: 
+      - PORT=${PORT_DEFAULT_INTERNAL}
+      - HOST=${HOST_GENERAL}
     ports:
       - ${PORT_DEFAULT_EXTERNAL}:${PORT_DEFAULT_INTERNAL}
     depends_on:
@@ -31,6 +34,9 @@ services:
   other:
     build: ./apps/other
     container_name: other
+    environment: 
+      - PORT=${PORT_OTHER_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/other/src:/usr/src:rw
     ports:
@@ -41,6 +47,9 @@ services:
   study:
     build: ./apps/study
     container_name: study
+    environment: 
+      - PORT=${PORT_STUDY_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/study/src:/usr/src:rw
     ports:
@@ -51,6 +60,9 @@ services:
   extra:
     build: ./apps/extra
     container_name: extra
+    environment: 
+      - PORT=${PORT_EXTRA_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/extra/src:/usr/src:rw
     ports:
@@ -61,6 +73,9 @@ services:
   auth:
     build: ./apps/auth
     container_name: auth
+    environment: 
+      - PORT=${PORT_AUTH_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/auth/src:/usr/src:rw
     ports:
@@ -71,6 +86,9 @@ services:
   users:
     build: ./apps/users
     container_name: users
+    environment: 
+      - PORT=${PORT_USERS_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/users/src:/usr/src:rw
     ports:
@@ -81,6 +99,9 @@ services:
   frontend:
     build: ./apps/frontend
     container_name: frontend
+    environment:
+      - NUXT_PORT=${PORT_FRONTEND_INTERNAL} 
+      - NUXT_HOST=${HOST_NUXT_INTERNAL}
     volumes:
       - ./apps/frontend/src:/usr/src:rw
     ports:
@@ -91,6 +112,9 @@ services:
   processes:
     build: ./apps/processes
     container_name: processes
+    environment: 
+      - PORT=${PORT_PROCESSES_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/processes/src:/usr/src:rw
     ports:
@@ -101,6 +125,9 @@ services:
   admin:
     build: ./apps/admin
     container_name: admin
+    environment: 
+      - PORT=${PORT_AUTH_INTERNAL}
+      - HOST=${HOST_GENERAL}
     volumes:
       - ./apps/admin/src:/usr/src:rw
     ports:
