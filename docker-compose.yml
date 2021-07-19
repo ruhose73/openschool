@@ -1,135 +1,115 @@
-version: "3.7" 
+version: "3.7"
 
-services: 
-    default:
-        
-        restart: always
-        build: ./apps/default
-        container_name: default
-        env_file: 
-            - ./envs/default-variables.env
-        ports: 
-            - ${EXTERNAL_DEFAULT_PORT}:3000
-        depends_on: 
-            - frontend
-            - admin
-            - other
-            - auth
-            - study
-            - users
-            - extra
-            - processes
-        links:
-            - frontend
-            - admin
-            - other 
-            - auth
-            - study
-            - users
-            - extra
-            - processes
-        networks: 
-            - network 
+services:
+  default:
+    restart: always
+    build: ./apps/default
+    container_name: default
+    ports:
+      - ${PORT_DEFAULT_EXTERNAL}:${PORT_DEFAULT_INTERNAL}
+    depends_on:
+      - frontend
+      - admin
+      - other
+      - auth
+      - study
+      - users
+      - extra
+      - processes
+    links:
+      - frontend
+      - admin
+      - other
+      - auth
+      - study
+      - users
+      - extra
+      - processes
+    networks:
+      - network
 
-    other: 
-        build: ./apps/other
-        container_name: other
-        env_file: 
-            - ./envs/other-variables.env
-        volumes:
-            - ./apps/other/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_OTHER_PORT}:3100
-        networks:
-            - network
-        
-    study:
-        build: ./apps/study
-        container_name: study
-        env_file: 
-            - ./envs/study-variables.env
-        volumes:
-            - ./apps/study/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_STUDY_PORT}:3200
-        networks:
-            - network
+  other:
+    build: ./apps/other
+    container_name: other
+    volumes:
+      - ./apps/other/src:/usr/src:rw
+    ports:
+      - ${PORT_OTHER_EXTERNAL}:${PORT_OTHER_INTERNAL}
+    networks:
+      - network
 
-    extra:
-        build: ./apps/extra
-        container_name: extra
-        env_file: 
-            - ./envs/extra-variables.env
-        volumes:
-            - ./apps/extra/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_EXTRA_PORT}:3300
-        networks: 
-            - network
+  study:
+    build: ./apps/study
+    container_name: study
+    volumes:
+      - ./apps/study/src:/usr/src:rw
+    ports:
+      - ${PORT_STUDY_EXTERNAL}:${PORT_STUDY_INTERNAL}
+    networks:
+      - network
 
-    auth:
-        build: ./apps/auth
-        container_name: auth
-        env_file: 
-            - ./envs/auth-variables.env
-        volumes:
-            - ./apps/auth/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_AUTH_PORT}:4000
-        networks:
-            - network
+  extra:
+    build: ./apps/extra
+    container_name: extra
+    volumes:
+      - ./apps/extra/src:/usr/src:rw
+    ports:
+      - ${PORT_EXTRA_EXTERNAL}:${PORT_EXTRA_INTERNAL}
+    networks:
+      - network
 
-    users: 
-        build: ./apps/users
-        container_name: users
-        env_file: 
-            - ./envs/users-variables.env
-        volumes:
-            - ./apps/users/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_USERS_PORT}:4100
-        networks:
-            - network
+  auth:
+    build: ./apps/auth
+    container_name: auth
+    volumes:
+      - ./apps/auth/src:/usr/src:rw
+    ports:
+      - ${PORT_AUTH_EXTERNAL}:${PORT_AUTH_INTERNAL}
+    networks:
+      - network
 
-    frontend:
-        build: ./apps/frontend
-        container_name: frontend
-        env_file: 
-            - ./envs/frontend-variables.env
-        volumes:
-            - ./apps/frontend/src:/usr/src:rw
-        ports:
-            - ${EXTERNAL_FRONTEND_PORT}:5000
-        networks:
-            - network
+  users:
+    build: ./apps/users
+    container_name: users
+    volumes:
+      - ./apps/users/src:/usr/src:rw
+    ports:
+      - ${PORT_USERS_EXTERNAL}:${PORT_USERS_INTERNAL}
+    networks:
+      - network
 
-    processes:
-        build: ./apps/processes
-        container_name: processes
-        env_file: 
-            - ./envs/processes-variables.env
-        volumes:
-            - ./apps/processes/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_PROCESSES_PORT}:6000
-        networks: 
-            - network
+  frontend:
+    build: ./apps/frontend
+    container_name: frontend
+    volumes:
+      - ./apps/frontend/src:/usr/src:rw
+    ports:
+      - ${PORT_FRONTEND_EXTERNAL}:${PORT_FRONTEND_INTERNAL}
+    networks:
+      - network
 
-    admin: 
-        build: ./apps/admin
-        container_name: admin 
-        env_file: 
-            - ./envs/admin-variables.env
-        volumes:
-            - ./apps/admin/src:/usr/src:rw
-        ports: 
-            - ${EXTERNAL_ADMIN_PORT}:7000
-        networks:
-            - network
+  processes:
+    build: ./apps/processes
+    container_name: processes
+    volumes:
+      - ./apps/processes/src:/usr/src:rw
+    ports:
+      - ${PORT_PROCESSES_EXTERNAL}:${PORT_PROCESSES_INTERNAL}
+    networks:
+      - network
 
-networks: 
-    network:
-        driver: bridge
-        
+  admin:
+    build: ./apps/admin
+    container_name: admin
+    volumes:
+      - ./apps/admin/src:/usr/src:rw
+    ports:
+      - ${PORT_ADMIN_EXTERNAL}:${PORT_ADMIN_INTERNAL}
+    environment:
+      - PORT=${PORT_ADMIN_INTERNAL}
+    networks:
+      - network
 
-
+networks:
+  network:
+    driver: bridge

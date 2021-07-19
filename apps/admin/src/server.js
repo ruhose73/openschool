@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 
 // константы
 const port = process.env.PORT;
@@ -8,8 +8,8 @@ const host = process.env.HOST;
 
 // приложение
 const app = express();
-app.get('/', (req, res) => {
-  res.send('I\'m admin');
+app.get("/", (req, res) => {
+  res.send("I'm admin");
 });
 
 app.listen(port, host);
