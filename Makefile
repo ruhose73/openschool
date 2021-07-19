@@ -61,6 +61,16 @@ login-extra:
 	docker-compose -f docker-compose.yml exec extra sh
 login-processes:
 	docker-compose -f docker-compose.yml exec processes sh
+app-frontend-dev:
+	docker container exec -d frontend npm run dev
+app-frontend-build:
+	docker container exec -d frontend npm run build
+app-frontend-start:
+	docker container exec -d frontend npm run start
+#app-frontend-generate:
+#	docker container exec -d frontend npm run generate
 
 #db-shell:
 #	docker-compose -f docker-compose.yml exec timescale psql #-Upostgres
+
+
