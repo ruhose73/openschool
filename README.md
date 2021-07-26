@@ -72,3 +72,29 @@ localhost:3000/api/server-name (api-name)
 localhost:3000
 localhost:3000/admin
 localhost:3000/processes
+
+## Новые порты
+
+### server
+
+- nginx - 3000
+- api-auth - 3100
+- api-content - 3200
+- api-users - 3300
+- api-extra - 3400
+- api-stuff - 3500
+
+### data
+
+- storage - 4000
+- db-auth - 4100
+- db-content - 4200
+- db-users - 4300
+- db-extra - 4400
+- db-stuff - 4500
+
+### web
+
+- front-public - 4000
+- front processes - 4100
+- front-admin - 4200
