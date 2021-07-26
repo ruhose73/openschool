@@ -95,6 +95,6 @@ localhost:3000/processes
 
 ### web
 
-- front-public - 4000
-- front processes - 4100
-- front-admin - 4200
+- front-public - 5000
+- front processes - 5100
+- front-admin - 5200
