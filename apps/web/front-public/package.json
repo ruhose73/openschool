@@ -1,16 +1,11 @@
 {
-  "name": "frontend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt src",
-    "build": "nuxt build src",
-    "start": "nuxt start src",
-    "generate": "nuxt generate src"
-  },
-  "dependencies": {
-    "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
-  },
-  "devDependencies": {}
-}
+    "name": "front-public_app",
+    "version": "1.0.0",
+    "description": "smth",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "4.17.1"
+    }
+  }

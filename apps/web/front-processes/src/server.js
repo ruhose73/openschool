@@ -9,7 +9,7 @@ const host = process.env.HOST;
 // the application
 const app = express();
 app.get('/', (req, res) => {
-  res.send('I\'m processes');
+  res.send('I\'m front-processes');
 });
 
 app.listen(port, host);

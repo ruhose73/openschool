@@ -1,8 +1,7 @@
 {
-    "name": "api-extra_app",
+    "name": "api-stuff_app",
     "version": "1.0.0",
     "description": "smth",
-    "author": "first last <first.last@example.com>",
     "scripts": {
       "start": "node server.js"
     },

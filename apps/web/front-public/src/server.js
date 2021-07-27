@@ -2,14 +2,15 @@
 
 const express = require('express');
 
-// константы
+// constants
 const port = process.env.PORT;
 const host = process.env.HOST;
 
-// приложение
+// the application
 const app = express();
 app.get('/', (req, res) => {
-  res.send('I\'m api-users');
+  //res.send('I\'m front-public');
+  res.sendFile(__dirname + '/index.html')
 });
 
 app.listen(port, host);

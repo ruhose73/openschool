@@ -1,139 +1,137 @@
 version: "3.7"
 
 services:
-  default:
+  router:
     restart: always
-    build: ./apps/default
-    container_name: default
+    build: ./apps/server/router
+    container_name: router
     environment: 
-      - PORT=${PORT_DEFAULT_INTERNAL}
+      - PORT=${PORT_ROUTER_INTERNAL}
       - HOST=${HOST_GENERAL}
     ports:
-      - ${PORT_DEFAULT_EXTERNAL}:${PORT_DEFAULT_INTERNAL}
+      - ${PORT_ROUTER_EXTERNAL}:${PORT_ROUTER_INTERNAL}
     depends_on:
-      - frontend
-      - admin
-      - other
-      - auth
-      - study
-      - users
-      - extra
-      - processes
+      - api-auth 
+      - api-content
+      - api-users
+      - api-extra 
+      - api-stuff
+      - front-public
+      - front-processes
+      - front-admin
     links:
-      - frontend
-      - admin
-      - other
-      - auth
-      - study
-      - users
-      - extra
-      - processes
+      - api-auth 
+      - api-content
+      - api-users
+      - api-extra 
+      - api-stuff
+      - front-public
+      - front-processes
+      - front-admin
     networks:
       - network
 
-  other:
-    build: ./apps/other
-    container_name: other
+  api-auth:
+    build: ./apps/server/api-auth/
+    container_name: api-auth
     environment: 
-      - PORT=${PORT_OTHER_INTERNAL}
+      - PORT=${PORT_API_AUTH_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/other/src:/usr/src:rw
+      - ./apps/server/api-auth/src:/home/src:rw
     ports:
-      - ${PORT_OTHER_EXTERNAL}:${PORT_OTHER_INTERNAL}
+      - ${PORT_API_AUTH_EXTERNAL}:${PORT_API_AUTH_INTERNAL}
     networks:
       - network
 
-  study:
-    build: ./apps/study
-    container_name: study
+  api-content:
+    build: ./apps/server/api-content/
+    container_name: api-content
     environment: 
-      - PORT=${PORT_STUDY_INTERNAL}
+      - PORT=${PORT_API_CONTENT_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/study/src:/usr/src:rw
+      - ./apps/server/api-content/src:/home/src:rw
     ports:
-      - ${PORT_STUDY_EXTERNAL}:${PORT_STUDY_INTERNAL}
+      - ${PORT_API_CONTENT_EXTERNAL}:${PORT_API_CONTENT_INTERNAL}
     networks:
       - network
 
-  extra:
-    build: ./apps/extra
-    container_name: extra
+  api-users:
+    build: ./apps/server/api-users/
+    container_name: api-users
     environment: 
-      - PORT=${PORT_EXTRA_INTERNAL}
+      - PORT=${PORT_API_USERS_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/extra/src:/usr/src:rw
+      - ./apps/server/api-users/src:/home/src:rw
     ports:
-      - ${PORT_EXTRA_EXTERNAL}:${PORT_EXTRA_INTERNAL}
+      - ${PORT_API_USERS_EXTERNAL}:${PORT_API_USERS_INTERNAL}
     networks:
       - network
 
-  auth:
-    build: ./apps/auth
-    container_name: auth
+  api-extra:
+    build: ./apps/server/api-extra/
+    container_name: api-extra
     environment: 
-      - PORT=${PORT_AUTH_INTERNAL}
+      - PORT=${PORT_API_EXTRA_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/auth/src:/usr/src:rw
+      - ./apps/server/api-extra/src:/home/src:rw
     ports:
-      - ${PORT_AUTH_EXTERNAL}:${PORT_AUTH_INTERNAL}
+      - ${PORT_API_EXTRA_EXTERNAL}:${PORT_API_EXTRA_INTERNAL}
     networks:
       - network
 
-  users:
-    build: ./apps/users
-    container_name: users
+  api-stuff:
+    build: ./apps/server/api-stuff/
+    container_name: api-stuff
     environment: 
-      - PORT=${PORT_USERS_INTERNAL}
+      - PORT=${PORT_API_STUFF_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/users/src:/usr/src:rw
+      - ./apps/server/api-stuff/src:/home/src:rw
     ports:
-      - ${PORT_USERS_EXTERNAL}:${PORT_USERS_INTERNAL}
+      - ${PORT_API_STUFF_EXTERNAL}:${PORT_API_STUFF_INTERNAL}
     networks:
       - network
 
-  frontend:
-    build: ./apps/frontend
-    container_name: frontend
-    environment:
-      - NUXT_PORT=${PORT_FRONTEND_INTERNAL} 
-      - NUXT_HOST=${HOST_NUXT_INTERNAL}
-    volumes:
-      - ./apps/frontend/src:/usr/src:rw
-    ports:
-      - ${PORT_FRONTEND_EXTERNAL}:${PORT_FRONTEND_INTERNAL}
-    networks:
-      - network
-
-  processes:
-    build: ./apps/processes
-    container_name: processes
+  front-public:
+    build: ./apps/web/front-public/
+    container_name: front-public
     environment: 
-      - PORT=${PORT_PROCESSES_INTERNAL}
+      - PORT=${PORT_FRONT_PUBLIC_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/processes/src:/usr/src:rw
+      - ./apps/web/front-public/src:/home/src:rw
     ports:
-      - ${PORT_PROCESSES_EXTERNAL}:${PORT_PROCESSES_INTERNAL}
+      - ${PORT_FRONT_PUBLIC_EXTERNAL}:${PORT_FRONT_PUBLIC_INTERNAL}
     networks:
       - network
 
-  admin:
-    build: ./apps/admin
-    container_name: admin
+  front-processes:
+    build: ./apps/web/front-processes/
+    container_name: front-processes
     environment: 
-      - PORT=${PORT_AUTH_INTERNAL}
+      - PORT=${PORT_FRONT_PROCESSES_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/admin/src:/usr/src:rw
+      - ./apps/web/front-processes/src:/home/src:rw
     ports:
-      - ${PORT_ADMIN_EXTERNAL}:${PORT_ADMIN_INTERNAL}
-    environment:
-      - PORT=${PORT_ADMIN_INTERNAL}
+      - ${PORT_FRONT_PROCESSES_EXTERNAL}:${PORT_FRONT_PROCESSES_INTERNAL}
+    networks:
+      - network
+
+  front-admin:
+    build: ./apps/web/front-admin/
+    container_name: front-admin
+    environment: 
+      - PORT=${PORT_FRONT_ADMIN_INTERNAL}
+      - HOST=${HOST_GENERAL}
+    volumes:
+      - ./apps/web/front-admin/src:/home/src:rw
+    ports:
+      - ${PORT_FRONT_ADMIN_EXTERNAL}:${PORT_FRONT_ADMIN_INTERNAL}
     networks:
       - network
 

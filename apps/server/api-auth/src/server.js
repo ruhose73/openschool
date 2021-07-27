@@ -2,14 +2,14 @@
 
 const express = require('express');
 
-// константы
+// constants
 const port = process.env.PORT;
 const host = process.env.HOST;
 
-// приложение
+// the application
 const app = express();
 app.get('/', (req, res) => {
-  res.send('I\'m auth');
+  res.send('I\'m api-auth');
 });
 
 app.listen(port, host);
