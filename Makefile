@@ -23,50 +23,12 @@ restart:
 	docker-compose -f docker-compose.yml up -d $(c)
 logs:
 	docker-compose -f docker-compose.yml logs --tail=100 -f $(c)
-logs-default:
-	docker-compose -f docker-compose.yml logs --tail=100 -f default
-logs-frontend:
-	docker-compose -f docker-compose.yml logs --tail=100 -f frontend
-logs-admin:
-	docker-compose -f docker-compose.yml logs --tail=100 -f admin
-logs-other:
-	docker-compose -f docker-compose.yml logs --tail=100 -f other
-logs-auth:
-	docker-compose -f docker-compose.yml logs --tail=100 -f auth
-logs-study:
-	docker-compose -f docker-compose.yml logs --tail=100 -f study
-logs-users:
-	docker-compose -f docker-compose.yml logs --tail=100 -f users
-logs-extra:
-	docker-compose -f docker-compose.yml logs --tail=100 -f extra
-logs-processes:
-	docker-compose -f docker-compose.yml logs --tail=100 -f processes
+
 ps:
 	docker-compose -f docker-compose.yml ps
-login-default:
-	docker-compose -f docker-compose.yml exec default sh
-login-frontend:
-	docker-compose -f docker-compose.yml exec frontend sh
-login-admin:
-	docker-compose -f docker-compose.yml exec admin sh
-login-other:
-	docker-compose -f docker-compose.yml exec other sh
-login-auth:
-	docker-compose -f docker-compose.yml exec auth sh
-login-study:
-	docker-compose -f docker-compose.yml exec study sh
-login-users:
-	docker-compose -f docker-compose.yml exec users sh
-login-extra:
-	docker-compose -f docker-compose.yml exec extra sh
-login-processes:
-	docker-compose -f docker-compose.yml exec processes sh
-app-frontend-dev:
-	docker container exec -d frontend npm run dev
-app-frontend-build:
-	docker container exec -d frontend npm run build
-app-frontend-start:
-	docker container exec -d frontend npm run start
+login:
+	docker-compose -f docker-compose.yml exec $(c) sh
+
 #app-frontend-generate:
 #	docker container exec -d frontend npm run generate
 

@@ -1,8 +1,7 @@
 {
-    "name": "processes_app",
+    "name": "front-processes_app",
     "version": "1.0.0",
     "description": "smth",
-    "author": "first last <first.last@example.com>",
     "scripts": {
       "start": "node server.js"
     },

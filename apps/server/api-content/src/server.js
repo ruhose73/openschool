@@ -9,7 +9,7 @@ const host = process.env.HOST;
 // приложение
 const app = express();
 app.get('/', (req, res) => {
-  res.send('I\'m other');
+  res.send('I\'m api-content');
 });
 
 app.listen(port, host);
