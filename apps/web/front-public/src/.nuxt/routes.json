@@ -1,0 +1,9 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/usr/src/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_bee310c0"
+  }
+]

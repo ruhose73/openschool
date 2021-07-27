@@ -1,5 +1,6 @@
 
 # IDE folders
 .history/
+.lh/
 .vscode/
 .idea/
