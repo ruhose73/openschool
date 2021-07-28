@@ -141,7 +141,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_STORAGE_EXTERNAL}
+    command: mongod --port ${PORT_STORAGE_INTERNAL}
     volumes:
       - type: bind
         source: ./data/storage
@@ -155,7 +155,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_AUTH_EXTERNAL}
+    command: mongod --port ${PORT_DB_AUTH_INTERNAL}
     volumes:
       - type: bind
         source: ./data/db-auth
@@ -169,7 +169,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_CONTENT_EXTERNAL}
+    command: mongod --port ${PORT_DB_CONTENT_INTERNAL}
     volumes:
       - type: bind
         source: ./data/db-content
@@ -183,7 +183,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_USERS_EXTERNAL}
+    command: mongod --port ${PORT_DB_USERS_INTERNAL}
     volumes:
       - type: bind
         source: ./data/db-users
@@ -197,7 +197,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_EXTRA_EXTERNAL}
+    command: mongod --port ${PORT_DB_EXTRA_INTERNAL}
     volumes:
       - type: bind
         source: ./data/db-extra
@@ -211,7 +211,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_STUFF_EXTERNAL}
+    command: mongod --port ${PORT_DB_STUFF_INTERNAL}
     
     volumes:
       - type: bind
