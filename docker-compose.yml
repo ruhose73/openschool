@@ -37,6 +37,7 @@ services:
     environment: 
       - PORT=${PORT_API_AUTH_INTERNAL}
       - HOST=${HOST_GENERAL}
+      - SECRET=${SECRET_AUTH_KEY}
     volumes:
       - ./apps/server/api-auth/src:/home/src:rw
     ports:
