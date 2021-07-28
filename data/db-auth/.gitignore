@@ -3,6 +3,6 @@ journal
 dignostic.data
 *.lock
 *.bson
-*WiredTiger
+WiredTiger
 *.turtle
 *.data

@@ -136,7 +136,7 @@ services:
     networks:
       - network
 
-  storage:
+  ftp:
     image: mongo
     restart: always
     environment:
@@ -145,10 +145,10 @@ services:
     command: mongod --port ${PORT_STORAGE_INTERNAL}
     volumes:
       - type: bind
-        source: ./data/storage
+        source: ./data/ftp/storage
         target: /data/db
     ports: 
-      - ${PORT_STORAGE_EXTERNAL}:${PORT_STORAGE_INTERNAL}
+      - ${PORT_FTP_EXTERNAL}:${PORT_FTP_INTERNAL}
 
   db-auth:
     image: mongo
@@ -159,7 +159,7 @@ services:
     command: mongod --port ${PORT_DB_AUTH_INTERNAL}
     volumes:
       - type: bind
-        source: ./data/db-auth
+        source: ./data/db-auth/storage
         target: /data/db
     ports: 
       - ${PORT_DB_AUTH_EXTERNAL}:${PORT_DB_AUTH_INTERNAL}
@@ -173,7 +173,7 @@ services:
     command: mongod --port ${PORT_DB_CONTENT_INTERNAL}
     volumes:
       - type: bind
-        source: ./data/db-content
+        source: ./data/db-content/storage
         target: /data/db
     ports: 
       - ${PORT_DB_CONTENT_EXTERNAL}:${PORT_DB_CONTENT_INTERNAL}
@@ -187,7 +187,7 @@ services:
     command: mongod --port ${PORT_DB_USERS_INTERNAL}
     volumes:
       - type: bind
-        source: ./data/db-users
+        source: ./data/db-users/storage
         target: /data/db
     ports: 
       - ${PORT_DB_USERS_EXTERNAL}:${PORT_DB_USERS_INTERNAL}
@@ -201,7 +201,7 @@ services:
     command: mongod --port ${PORT_DB_EXTRA_INTERNAL}
     volumes:
       - type: bind
-        source: ./data/db-extra
+        source: ./data/db-extra/storage
         target: /data/db
     ports: 
       - ${PORT_DB_EXTRA_EXTERNAL}:${PORT_DB_EXTRA_INTERNAL}
@@ -216,7 +216,7 @@ services:
     
     volumes:
       - type: bind
-        source: ./data/db-stuff
+        source: ./data/db-stuff/storage
         target: /data/db
     ports: 
       - ${PORT_DB_STUFF_EXTERNAL}:${PORT_DB_STUFF_INTERNAL}
