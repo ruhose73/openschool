@@ -4,4 +4,3 @@
 .lh/
 .vscode/
 .idea/
-node_modules/.bin/semver

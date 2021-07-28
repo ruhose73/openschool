@@ -15,19 +15,19 @@ app.use(cors());
 app.use('api/api-auth', router);
 
 app.get('/', (req, res) => {
-res.send('I\'m api-auth');
+  res.send('I\'m api-auth');
 });
 
- const start = async () => {
-   try {
-       app.listen(PORT, HOST, ()=>console.log(`running on http://${HOST}:${PORT}`));
+const start = async () => {
+  try {
+      app.listen(PORT, HOST, ()=>console.log(`running on http://${HOST}:${PORT}`));
 
-   } catch (e) {
-       console.log(e);
-   }
+  } catch (e) {
+      console.log(e);
+  }
 }
 
 start();
 
-// app.listen(PORT, HOST);
-// console.log(`running on http://${HOST}:${PORT}`);
+// app.listen(port, host);
+// console.log(`running on http://${host}:${port}`);
