@@ -1,8 +1,2 @@
-*.wt
-journal
-dignostic.data
-*.lock
-*.bson
-WiredTiger
-*.turtle
-*.data
+storage/*
+!storage/Readme.md

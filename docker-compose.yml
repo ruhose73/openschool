@@ -137,12 +137,12 @@ services:
       - network
 
   ftp:
-    image: mongo
+    build: ./data/ftp
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_STORAGE_INTERNAL}
+    command: mongod --port ${PORT_FTP_INTERNAL}
     volumes:
       - type: bind
         source: ./data/ftp/storage
@@ -151,7 +151,7 @@ services:
       - ${PORT_FTP_EXTERNAL}:${PORT_FTP_INTERNAL}
 
   db-auth:
-    image: mongo
+    build: ./data/db-auth
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -165,7 +165,7 @@ services:
       - ${PORT_DB_AUTH_EXTERNAL}:${PORT_DB_AUTH_INTERNAL}
 
   db-content:
-    image: mongo
+    build: ./data/db-content
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -179,7 +179,7 @@ services:
       - ${PORT_DB_CONTENT_EXTERNAL}:${PORT_DB_CONTENT_INTERNAL}
 
   db-users:
-    image: mongo
+    build: ./data/db-users
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -193,7 +193,7 @@ services:
       - ${PORT_DB_USERS_EXTERNAL}:${PORT_DB_USERS_INTERNAL}
 
   db-extra:
-    image: mongo
+    build: ./data/db-extra
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -207,7 +207,7 @@ services:
       - ${PORT_DB_EXTRA_EXTERNAL}:${PORT_DB_EXTRA_INTERNAL}
 
   db-stuff:
-    image: mongo
+    build: ./data/db-stuff
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
