@@ -135,6 +135,85 @@ services:
     networks:
       - network
 
+  storage:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - type: bind
+        source: ./data/storage
+        target: /data/db
+    ports: 
+      - ${PORT_STORAGE_EXTERNAL}:${PORT_STORAGE_INTERNAL}
+
+  db-auth:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - type: bind
+        source: ./data/db-auth
+        target: /data/db
+    ports: 
+      - ${PORT_DB_AUTH_EXTERNAL}:${PORT_DB_AUTH_INTERNAL}
+
+  db-content:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - type: bind
+        source: ./data/db-content
+        target: /data/db
+    ports: 
+      - ${PORT_DB_CONTENT_EXTERNAL}:${PORT_DB_CONTENT_INTERNAL}
+
+  db-users:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - type: bind
+        source: ./data/db-users
+        target: /data/db
+    ports: 
+      - ${PORT_DB_USERS_EXTERNAL}:${PORT_DB_USERS_INTERNAL}
+
+  db-extra:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - type: bind
+        source: ./data/db-extra
+        target: /data/db
+    ports: 
+      - ${PORT_DB_EXTRA_EXTERNAL}:${PORT_DB_EXTRA_INTERNAL}
+
+  db-stuff:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - type: bind
+        source: ./data/db-stuff
+        target: /data/db
+    ports: 
+      - ${PORT_DB_STUFF_EXTERNAL}:${PORT_DB_STUFF_INTERNAL}
+
+
 networks:
   network:
     driver: bridge
