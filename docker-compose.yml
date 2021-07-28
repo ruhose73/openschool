@@ -139,6 +139,7 @@ services:
   ftp:
     build: ./data/ftp
     restart: always
+    container_name: ftp
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -151,6 +152,7 @@ services:
   db-auth:
     build: ./data/db-auth
     restart: always
+    container_name: db-auth
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -163,6 +165,7 @@ services:
   db-content:
     build: ./data/db-content
     restart: always
+    container_name: db-content
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -175,6 +178,7 @@ services:
   db-users:
     build: ./data/db-users
     restart: always
+    container_name: db-users
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -187,6 +191,7 @@ services:
   db-extra:
     build: ./data/db-extra
     restart: always
+    container_name: db-extra
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -199,6 +204,7 @@ services:
   db-stuff:
     build: ./data/db-stuff
     restart: always
+    container_name: db-stuff
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
