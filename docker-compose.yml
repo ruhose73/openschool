@@ -144,9 +144,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     command: mongod --port ${PORT_FTP_INTERNAL}
     volumes:
-      - type: bind
-        source: ./data/ftp/storage
-        target: /data/db
+      - ./data/ftp/storage:/data/db
     ports: 
       - ${PORT_FTP_EXTERNAL}:${PORT_FTP_INTERNAL}
 
@@ -158,9 +156,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     command: mongod --port ${PORT_DB_AUTH_INTERNAL}
     volumes:
-      - type: bind
-        source: ./data/db-auth/storage
-        target: /data/db
+      - ./data/db-auth/storage:/data/db
     ports: 
       - ${PORT_DB_AUTH_EXTERNAL}:${PORT_DB_AUTH_INTERNAL}
 
@@ -172,9 +168,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     command: mongod --port ${PORT_DB_CONTENT_INTERNAL}
     volumes:
-      - type: bind
-        source: ./data/db-content/storage
-        target: /data/db
+      - ./data/db-content/storage:/data/db
     ports: 
       - ${PORT_DB_CONTENT_EXTERNAL}:${PORT_DB_CONTENT_INTERNAL}
 
@@ -186,9 +180,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     command: mongod --port ${PORT_DB_USERS_INTERNAL}
     volumes:
-      - type: bind
-        source: ./data/db-users/storage
-        target: /data/db
+      - ./data/db-users/storage:/data/db
     ports: 
       - ${PORT_DB_USERS_EXTERNAL}:${PORT_DB_USERS_INTERNAL}
 
@@ -200,9 +192,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: example
     command: mongod --port ${PORT_DB_EXTRA_INTERNAL}
     volumes:
-      - type: bind
-        source: ./data/db-extra/storage
-        target: /data/db
+      - ./data/db-extra/storage:/data/db
     ports: 
       - ${PORT_DB_EXTRA_EXTERNAL}:${PORT_DB_EXTRA_INTERNAL}
 
@@ -215,9 +205,7 @@ services:
     command: mongod --port ${PORT_DB_STUFF_INTERNAL}
     
     volumes:
-      - type: bind
-        source: ./data/db-stuff/storage
-        target: /data/db
+      - ./data/db-stuff/storage:/data/db
     ports: 
       - ${PORT_DB_STUFF_EXTERNAL}:${PORT_DB_STUFF_INTERNAL}
 

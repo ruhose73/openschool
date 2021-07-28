@@ -6,6 +6,9 @@ build:
 	sudo docker-compose -f docker-compose.yml build $(c)
 up:
 	sudo docker-compose -f docker-compose.yml up -d $(c)
+bu:
+	sudo docker-compose -f docker-compose.yml build $(c)
+	sudo docker-compose -f docker-compose.yml up -d $(c)
 start:
 	sudo docker-compose -f docker-compose.yml start $(c)
 pause:
