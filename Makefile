@@ -35,7 +35,7 @@ login:
 #app-frontend-generate:
 #	docker container exec -d frontend npm run generate
 
-#db-shell:
-#	docker-compose -f docker-compose.yml exec timescale psql #-Upostgres
+db-shell:
+	docker-compose -f docker-compose.yml exec -it mongodb bash $(c)
 
 
