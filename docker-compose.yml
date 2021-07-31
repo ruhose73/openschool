@@ -1,219 +1,224 @@
 version: "3.7"
 
 services:
-  router:
+  router-default:
     restart: always
-    build: ./apps/server/router
-    container_name: router
+    build: ./server/router-default
+    container_name: router-default
     environment: 
-      - PORT=${PORT_ROUTER_INTERNAL}
+      - PORT=${PORT_router-default_INTERNAL}
       - HOST=${HOST_GENERAL}
     ports:
-      - ${PORT_ROUTER_EXTERNAL}:${PORT_ROUTER_INTERNAL}
+      - ${PORT_ROUTER_DEFAULT_EXTERNAL}:${PORT_ROUTER_DEFAULT_INTERNAL}
     depends_on:
       - api-auth 
       - api-content
       - api-users
       - api-extra 
       - api-stuff
-      - front-public
-      - front-processes
-      - front-admin
+      - web-public
+      - web-processes
+      - web-admin
     links:
       - api-auth 
       - api-content
       - api-users
       - api-extra 
       - api-stuff
-      - front-public
-      - front-processes
-      - front-admin
+      - web-public
+      - web-processes
+      - web-admin
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - network
 
   api-auth:
-    build: ./apps/server/api-auth/
+    build: ./server/api-auth/
     container_name: api-auth
     environment: 
       - PORT=${PORT_API_AUTH_INTERNAL}
       - HOST=${HOST_GENERAL}
       - SECRET=${SECRET_AUTH_KEY}
     volumes:
-      - ./apps/server/api-auth/src:/home/src:rw
+      - ./server/api-auth/src:/home/src:rw
     ports:
       - ${PORT_API_AUTH_EXTERNAL}:${PORT_API_AUTH_INTERNAL}
     networks:
       - network
 
   api-content:
-    build: ./apps/server/api-content/
+    build: ./server/api-content/
     container_name: api-content
     environment: 
       - PORT=${PORT_API_CONTENT_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/server/api-content/src:/home/src:rw
+      - ./server/api-content/src:/home/src:rw
     ports:
       - ${PORT_API_CONTENT_EXTERNAL}:${PORT_API_CONTENT_INTERNAL}
     networks:
       - network
 
   api-users:
-    build: ./apps/server/api-users/
+    build: ./server/api-users/
     container_name: api-users
     environment: 
       - PORT=${PORT_API_USERS_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/server/api-users/src:/home/src:rw
+      - ./server/api-users/src:/home/src:rw
     ports:
       - ${PORT_API_USERS_EXTERNAL}:${PORT_API_USERS_INTERNAL}
     networks:
       - network
 
   api-extra:
-    build: ./apps/server/api-extra/
+    build: ./server/api-extra/
     container_name: api-extra
     environment: 
       - PORT=${PORT_API_EXTRA_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/server/api-extra/src:/home/src:rw
+      - ./server/api-extra/src:/home/src:rw
     ports:
       - ${PORT_API_EXTRA_EXTERNAL}:${PORT_API_EXTRA_INTERNAL}
     networks:
       - network
 
   api-stuff:
-    build: ./apps/server/api-stuff/
+    build: ./server/api-stuff/
     container_name: api-stuff
     environment: 
       - PORT=${PORT_API_STUFF_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/server/api-stuff/src:/home/src:rw
+      - ./server/api-stuff/src:/home/src:rw
     ports:
       - ${PORT_API_STUFF_EXTERNAL}:${PORT_API_STUFF_INTERNAL}
     networks:
       - network
 
-  front-public:
-    build: ./apps/web/front-public/
-    container_name: front-public
+  web-public:
+    build: ./client/web-public/
+    container_name: web-public
     environment: 
       - PORT=${PORT_FRONT_PUBLIC_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/web/front-public/src:/home/src:rw
+      - ./client/web-public/src:/home/src:rw
     ports:
       - ${PORT_FRONT_PUBLIC_EXTERNAL}:${PORT_FRONT_PUBLIC_INTERNAL}
     networks:
       - network
 
-  front-processes:
-    build: ./apps/web/front-processes/
-    container_name: front-processes
+  web-processes:
+    build: ./client/web-processes/
+    container_name: web-processes
     environment: 
       - PORT=${PORT_FRONT_PROCESSES_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/web/front-processes/src:/home/src:rw
+      - ./client/web-processes/src:/home/src:rw
     ports:
       - ${PORT_FRONT_PROCESSES_EXTERNAL}:${PORT_FRONT_PROCESSES_INTERNAL}
     networks:
       - network
 
-  front-admin:
-    build: ./apps/web/front-admin/
-    container_name: front-admin
+  web-admin:
+    build: ./client/web-admin/
+    container_name: web-admin
     environment: 
       - PORT=${PORT_FRONT_ADMIN_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./apps/web/front-admin/src:/home/src:rw
+      - ./client/web-admin/src:/home/src:rw
     ports:
       - ${PORT_FRONT_ADMIN_EXTERNAL}:${PORT_FRONT_ADMIN_INTERNAL}
     networks:
       - network
 
-  ftp:
-    build: ./data/ftp
+  ftp-default:
+    build: ./data/ftp-default
     restart: always
-    container_name: ftp
+    container_name: ftp-default
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_FTP_INTERNAL}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_FTP_INTERNAL}
     volumes:
-      - ./data/ftp/storage:/data/db
+      - ./data/ftp-default/storage:/data/db
     ports: 
       - ${PORT_FTP_EXTERNAL}:${PORT_FTP_INTERNAL}
 
-  db-auth:
-    build: ./data/db-auth
+  mongo-auth:
+    build: ./data/mongo-auth
     restart: always
-    container_name: db-auth
+    container_name: mongo-auth
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_AUTH_INTERNAL}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_MONGO_AUTH_INTERNAL}
     volumes:
-      - ./data/db-auth/storage:/data/db
+      - ./data/mongo-auth/storage:/data/db
     ports: 
-      - ${PORT_DB_AUTH_EXTERNAL}:${PORT_DB_AUTH_INTERNAL}
+      - ${PORT_MONGO_AUTH_EXTERNAL}:${PORT_MONGO_AUTH_INTERNAL}
 
-  db-content:
-    build: ./data/db-content
+  mongo-content:
+    build: ./data/mongo-content
     restart: always
-    container_name: db-content
+    container_name: mongo-content
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_CONTENT_INTERNAL}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_MONGO_CONTENT_INTERNAL}
     volumes:
-      - ./data/db-content/storage:/data/db
+      - ./data/mongo-content/storage:/data/db
     ports: 
-      - ${PORT_DB_CONTENT_EXTERNAL}:${PORT_DB_CONTENT_INTERNAL}
+      - ${PORT_MONGO_CONTENT_EXTERNAL}:${PORT_MONGO_CONTENT_INTERNAL}
 
-  db-users:
-    build: ./data/db-users
+  mongo-users:
+    build: ./data/mongo-users
     restart: always
-    container_name: db-users
+    container_name: mongo-users
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_USERS_INTERNAL}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_MONGO_USERS_INTERNAL}
     volumes:
-      - ./data/db-users/storage:/data/db
+      - ./data/mongo-users/storage:/data/db
     ports: 
-      - ${PORT_DB_USERS_EXTERNAL}:${PORT_DB_USERS_INTERNAL}
+      - ${PORT_MONGO_USERS_EXTERNAL}:${PORT_MONGO_USERS_INTERNAL}
 
-  db-extra:
-    build: ./data/db-extra
+  mongo-extra:
+    build: ./data/mongo-extra
     restart: always
-    container_name: db-extra
+    container_name: mongo-extra
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_EXTRA_INTERNAL}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_MONGO_EXTRA_INTERNAL}
     volumes:
-      - ./data/db-extra/storage:/data/db
+      - ./data/mongo-extra/storage:/data/db
     ports: 
-      - ${PORT_DB_EXTRA_EXTERNAL}:${PORT_DB_EXTRA_INTERNAL}
+      - ${PORT_MONGO_EXTRA_EXTERNAL}:${PORT_MONGO_EXTRA_INTERNAL}
 
-  db-stuff:
-    build: ./data/db-stuff
+  mongo-stuff:
+    build: ./data/mongo-stuff
     restart: always
-    container_name: db-stuff
+    container_name: mongo-stuff
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-    command: mongod --port ${PORT_DB_STUFF_INTERNAL}
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_MONGO_STUFF_INTERNAL}
     
     volumes:
-      - ./data/db-stuff/storage:/data/db
+      - ./data/mongo-stuff/storage:/data/db
     ports: 
-      - ${PORT_DB_STUFF_EXTERNAL}:${PORT_DB_STUFF_INTERNAL}
+      - ${PORT_MONGO_STUFF_EXTERNAL}:${PORT_MONGO_STUFF_INTERNAL}
 
 
 networks:
