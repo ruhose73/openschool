@@ -6,7 +6,7 @@ services:
     build: ./server/router-default
     container_name: router-default
     environment: 
-      - PORT=${PORT_router-default_INTERNAL}
+      - PORT=${PORT_ROUTER_DEFAULT_INTERNAL}
       - HOST=${HOST_GENERAL}
     ports:
       - ${PORT_ROUTER_DEFAULT_EXTERNAL}:${PORT_ROUTER_DEFAULT_INTERNAL}
@@ -109,7 +109,7 @@ services:
       - PORT=${PORT_FRONT_PUBLIC_INTERNAL}
       - HOST=${HOST_GENERAL}
     volumes:
-      - ./client/web-public/src:/home/src:rw
+      - ./client/web-public:/home/src:rw
     ports:
       - ${PORT_FRONT_PUBLIC_EXTERNAL}:${PORT_FRONT_PUBLIC_INTERNAL}
     networks:
