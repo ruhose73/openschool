@@ -51,11 +51,11 @@ services:
       - network
     depends_on: 
       - ftp-default
-      - mongo-auth
-      - mongo-content
-      - mongo-extra
-      - mongo-stuff
-      - mongo-users
+      - db-auth
+      - db-content
+      - db-extra
+      - db-stuff
+      - db-users
 
   api-content:
     build: ./server/api-content/
@@ -71,11 +71,11 @@ services:
       - network
     depends_on: 
       - ftp-default
-      - mongo-auth
-      - mongo-content
-      - mongo-extra
-      - mongo-stuff
-      - mongo-users
+      - db-auth
+      - db-content
+      - db-extra
+      - db-stuff
+      - db-users
   api-users:
     build: ./server/api-users/
     container_name: api-users
@@ -90,11 +90,11 @@ services:
       - network
     depends_on: 
       - ftp-default
-      - mongo-auth
-      - mongo-content
-      - mongo-extra
-      - mongo-stuff
-      - mongo-users
+      - db-auth
+      - db-content
+      - db-extra
+      - db-stuff
+      - db-users
 
   api-extra:
     build: ./server/api-extra/
@@ -110,11 +110,11 @@ services:
       - network
     depends_on: 
           - ftp-default
-          - mongo-auth
-          - mongo-content
-          - mongo-extra
-          - mongo-stuff
-          - mongo-users
+          - db-auth
+          - db-content
+          - db-extra
+          - db-stuff
+          - db-users
 
   api-stuff:
     build: ./server/api-stuff/
@@ -130,11 +130,11 @@ services:
       - network
     depends_on: 
       - ftp-default
-      - mongo-auth
-      - mongo-content
-      - mongo-extra
-      - mongo-stuff
-      - mongo-users
+      - db-auth
+      - db-content
+      - db-extra
+      - db-stuff
+      - db-users
 
   web-public:
     build: ./client/web-public/
@@ -199,79 +199,79 @@ services:
     restart: always
     container_name: ftp-default
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - PORT=${PORT_FTP_INTERNAL}
+      - DB_INITDB_ROOT_USERNAME=root
+      - DB_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_FTP_DEFAULT_INTERNAL}
     volumes:
       - ./storage/ftp-default/data:/data/db
     ports: 
       - ${PORT_FTP_DEFAULT_EXTERNAL}:${PORT_FTP_DEFAULT_INTERNAL}
 
-  mongo-auth:
-    build: ./storage/mongo-auth
+  db-auth:
+    build: ./storage/db-auth
     restart: always
-    container_name: mongo-auth
+    container_name: db-auth
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - PORT=${PORT_MONGO_AUTH_INTERNAL}
+      - DB_INITDB_ROOT_USERNAME=root
+      - DB_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_DB_AUTH_INTERNAL}
     volumes:
-      - ./storage/mongo-auth/data:/data/db
+      - ./storage/db-auth/data:/data/db
     ports: 
-      - ${PORT_MONGO_AUTH_EXTERNAL}:${PORT_MONGO_AUTH_INTERNAL}
+      - ${PORT_DB_AUTH_EXTERNAL}:${PORT_DB_AUTH_INTERNAL}
 
-  mongo-content:
-    build: ./storage/mongo-content
+  db-content:
+    build: ./storage/db-content
     restart: always
-    container_name: mongo-content
+    container_name: db-content
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - PORT=${PORT_MONGO_CONTENT_INTERNAL}
+      - DB_INITDB_ROOT_USERNAME=root
+      - DB_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_DB_CONTENT_INTERNAL}
     volumes:
-      - ./storage/mongo-content/data:/data/db
+      - ./storage/db-content/data:/data/db
     ports: 
-      - ${PORT_MONGO_CONTENT_EXTERNAL}:${PORT_MONGO_CONTENT_INTERNAL}
+      - ${PORT_DB_CONTENT_EXTERNAL}:${PORT_DB_CONTENT_INTERNAL}
 
-  mongo-users:
-    build: ./storage/mongo-users
+  db-users:
+    build: ./storage/db-users
     restart: always
-    container_name: mongo-users
+    container_name: db-users
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - PORT=${PORT_MONGO_USERS_INTERNAL}
+      - DB_INITDB_ROOT_USERNAME=root
+      - DB_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_DB_USERS_INTERNAL}
     volumes:
-      - ./storage/mongo-users/data:/data/db
+      - ./storage/db-users/data:/data/db
     ports: 
-      - ${PORT_MONGO_USERS_EXTERNAL}:${PORT_MONGO_USERS_INTERNAL}
+      - ${PORT_DB_USERS_EXTERNAL}:${PORT_DB_USERS_INTERNAL}
 
-  mongo-extra:
-    build: ./storage/mongo-extra
+  db-extra:
+    build: ./storage/db-extra
     restart: always
-    container_name: mongo-extra
+    container_name: db-extra
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - PORT=${PORT_MONGO_EXTRA_INTERNAL}
+      - DB_INITDB_ROOT_USERNAME=root
+      - DB_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_DB_EXTRA_INTERNAL}
     volumes:
-      - ./storage/mongo-extra/data:/data/db
+      - ./storage/db-extra/data:/data/db
     ports: 
-      - ${PORT_MONGO_EXTRA_EXTERNAL}:${PORT_MONGO_EXTRA_INTERNAL}
+      - ${PORT_DB_EXTRA_EXTERNAL}:${PORT_DB_EXTRA_INTERNAL}
 
-  mongo-stuff:
-    build: ./storage/mongo-stuff
+  db-stuff:
+    build: ./storage/db-stuff
     restart: always
-    container_name: mongo-stuff
+    container_name: db-stuff
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-      - PORT=${PORT_MONGO_STUFF_INTERNAL}
+      - DB_INITDB_ROOT_USERNAME=root
+      - DB_INITDB_ROOT_PASSWORD=example
+      - PORT=${PORT_DB_STUFF_INTERNAL}
     
     volumes:
-      - ./storage/mongo-stuff/data:/data/db
+      - ./storage/db-stuff/data:/data/db
     ports: 
-      - ${PORT_MONGO_STUFF_EXTERNAL}:${PORT_MONGO_STUFF_INTERNAL}
+      - ${PORT_DB_STUFF_EXTERNAL}:${PORT_DB_STUFF_INTERNAL}
 
 
 networks:
