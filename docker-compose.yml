@@ -49,6 +49,13 @@ services:
       - ${PORT_API_AUTH_EXTERNAL}:${PORT_API_AUTH_INTERNAL}
     networks:
       - network
+    depends_on: 
+      - ftp-default
+      - mongo-auth
+      - mongo-content
+      - mongo-extra
+      - mongo-stuff
+      - mongo-users
 
   api-content:
     build: ./server/api-content/
@@ -62,7 +69,13 @@ services:
       - ${PORT_API_CONTENT_EXTERNAL}:${PORT_API_CONTENT_INTERNAL}
     networks:
       - network
-
+    depends_on: 
+      - ftp-default
+      - mongo-auth
+      - mongo-content
+      - mongo-extra
+      - mongo-stuff
+      - mongo-users
   api-users:
     build: ./server/api-users/
     container_name: api-users
@@ -75,6 +88,13 @@ services:
       - ${PORT_API_USERS_EXTERNAL}:${PORT_API_USERS_INTERNAL}
     networks:
       - network
+    depends_on: 
+      - ftp-default
+      - mongo-auth
+      - mongo-content
+      - mongo-extra
+      - mongo-stuff
+      - mongo-users
 
   api-extra:
     build: ./server/api-extra/
@@ -88,6 +108,13 @@ services:
       - ${PORT_API_EXTRA_EXTERNAL}:${PORT_API_EXTRA_INTERNAL}
     networks:
       - network
+    depends_on: 
+          - ftp-default
+          - mongo-auth
+          - mongo-content
+          - mongo-extra
+          - mongo-stuff
+          - mongo-users
 
   api-stuff:
     build: ./server/api-stuff/
@@ -101,6 +128,13 @@ services:
       - ${PORT_API_STUFF_EXTERNAL}:${PORT_API_STUFF_INTERNAL}
     networks:
       - network
+    depends_on: 
+      - ftp-default
+      - mongo-auth
+      - mongo-content
+      - mongo-extra
+      - mongo-stuff
+      - mongo-users
 
   web-public:
     build: ./client/web-public/
@@ -114,6 +148,12 @@ services:
       - ${PORT_FRONT_PUBLIC_EXTERNAL}:${PORT_FRONT_PUBLIC_INTERNAL}
     networks:
       - network
+    depends_on: 
+      - api-auth 
+      - api-content
+      - api-users
+      - api-extra 
+      - api-stuff
 
   web-processes:
     build: ./client/web-processes/
@@ -127,7 +167,13 @@ services:
       - ${PORT_FRONT_PROCESSES_EXTERNAL}:${PORT_FRONT_PROCESSES_INTERNAL}
     networks:
       - network
-
+    depends_on: 
+      - api-auth 
+      - api-content
+      - api-users
+      - api-extra 
+      - api-stuff
+        
   web-admin:
     build: ./client/web-admin/
     container_name: web-admin
@@ -140,6 +186,13 @@ services:
       - ${PORT_FRONT_ADMIN_EXTERNAL}:${PORT_FRONT_ADMIN_INTERNAL}
     networks:
       - network
+    depends_on: 
+      - api-auth 
+      - api-content
+      - api-users
+      - api-extra 
+      - api-stuff
+      
 
   ftp-default:
     build: ./storage/ftp-default
