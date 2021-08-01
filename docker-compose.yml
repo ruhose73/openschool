@@ -108,8 +108,8 @@ services:
     environment: 
       - PORT=${PORT_FRONT_PUBLIC_INTERNAL}
       - HOST=${HOST_GENERAL}
-    volumes:
-      - ./client/web-public:/home/src:rw
+    #volumes:
+    #  - ./client/web-public:/home/src/:rw
     ports:
       - ${PORT_FRONT_PUBLIC_EXTERNAL}:${PORT_FRONT_PUBLIC_INTERNAL}
     networks:
