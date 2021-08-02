@@ -4,3 +4,5 @@
 .lh/
 .vscode/
 .idea/
+.next/
+node_modules/
